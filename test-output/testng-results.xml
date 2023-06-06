@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-06-06T18:25:39 IST" name="Suite" finished-at="2023-06-06T18:29:31 IST" duration-ms="232123">
+    <groups>
+    </groups>
+    <test started-at="2023-06-06T18:25:39 IST" name="Test" finished-at="2023-06-06T18:25:54 IST" duration-ms="15192">
+      <class name="QA_AccountManager_TestCases.LoginTest">
+        <test-method is-config="true" signature="beforetestmethod()[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:39 IST" name="beforetestmethod" finished-at="2023-06-06T18:25:39 IST" duration-ms="323" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetestmethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:39 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:25:47 IST" duration-ms="7954" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.LoginTest.loginpage() throws java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="loginpage()[pri:1, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:47 IST" name="loginpage" finished-at="2023-06-06T18:25:48 IST" duration-ms="649" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginpage -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:48 IST" name="afterMethod" finished-at="2023-06-06T18:25:48 IST" duration-ms="357" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=loginpage status=SUCCESS method=LoginTest.loginpage()[pri:1, instance:QA_AccountManager_TestCases.LoginTest@4802796d] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:48 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:25:53 IST" duration-ms="4545" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.LoginTest.UIloginpage() throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="UIloginpage()[pri:2, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:53 IST" name="UIloginpage" finished-at="2023-06-06T18:25:54 IST" duration-ms="611" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UIloginpage -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:54 IST" name="afterMethod" finished-at="2023-06-06T18:25:54 IST" duration-ms="269" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=UIloginpage status=SUCCESS method=LoginTest.UIloginpage()[pri:2, instance:QA_AccountManager_TestCases.LoginTest@4802796d] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:QA_AccountManager_TestCases.LoginTest@4802796d]" started-at="2023-06-06T18:25:54 IST" name="afterTest" finished-at="2023-06-06T18:25:54 IST" duration-ms="431" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- QA_AccountManager_TestCases.LoginTest -->
+    </test> <!-- Test -->
+    <test started-at="2023-06-06T18:25:54 IST" name="Test1" finished-at="2023-06-06T18:26:16 IST" duration-ms="22161">
+      <class name="QA_AccountManager_TestCases.UIforgotpasswordpage">
+        <test-method is-config="true" signature="beforetestmethod()[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8]" started-at="2023-06-06T18:25:54 IST" name="beforetestmethod" finished-at="2023-06-06T18:25:54 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetestmethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8]" started-at="2023-06-06T18:25:54 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:26:12 IST" duration-ms="18008" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.UIforgotpasswordpage.verifyuiforgotpasswordpage() throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="verifyuiforgotpasswordpage()[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8]" started-at="2023-06-06T18:26:12 IST" name="verifyuiforgotpasswordpage" finished-at="2023-06-06T18:26:15 IST" duration-ms="2802" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyuiforgotpasswordpage -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8]" started-at="2023-06-06T18:26:15 IST" name="afterMethod" finished-at="2023-06-06T18:26:16 IST" duration-ms="1259" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyuiforgotpasswordpage status=SUCCESS method=UIforgotpasswordpage.verifyuiforgotpasswordpage()[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:QA_AccountManager_TestCases.UIforgotpasswordpage@7dcf94f8]" started-at="2023-06-06T18:26:16 IST" name="afterTest" finished-at="2023-06-06T18:26:16 IST" duration-ms="85" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- QA_AccountManager_TestCases.UIforgotpasswordpage -->
+    </test> <!-- Test1 -->
+    <test started-at="2023-06-06T18:26:16 IST" name="Test2" finished-at="2023-06-06T18:27:02 IST" duration-ms="45887">
+      <class name="QA_AccountManager_TestCases.Forgotpassword_functional">
+        <test-method is-config="true" signature="beforetestmethod()[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:16 IST" name="beforetestmethod" finished-at="2023-06-06T18:26:16 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetestmethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:16 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:26:22 IST" duration-ms="5162" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.Forgotpassword_functional.forgotpasspage()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="forgotpasspage()[pri:1, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:22 IST" name="forgotpasspage" finished-at="2023-06-06T18:26:22 IST" duration-ms="113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- forgotpasspage -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:22 IST" name="afterMethod" finished-at="2023-06-06T18:26:22 IST" duration-ms="250" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=forgotpasspage status=SUCCESS method=Forgotpassword_functional.forgotpasspage()[pri:1, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:22 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:26:30 IST" duration-ms="8112" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.Forgotpassword_functional.validate_toast() throws java.lang.InterruptedException,java.io.IOException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="validate_toast()[pri:2, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:26:30 IST" name="validate_toast" finished-at="2023-06-06T18:27:02 IST" duration-ms="31833" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validate_toast -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:27:02 IST" name="afterMethod" finished-at="2023-06-06T18:27:02 IST" duration-ms="312" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validate_toast status=SUCCESS method=Forgotpassword_functional.validate_toast()[pri:2, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:QA_AccountManager_TestCases.Forgotpassword_functional@233795b6]" started-at="2023-06-06T18:27:02 IST" name="afterTest" finished-at="2023-06-06T18:27:02 IST" duration-ms="92" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- QA_AccountManager_TestCases.Forgotpassword_functional -->
+    </test> <!-- Test2 -->
+    <test started-at="2023-06-06T18:27:02 IST" name="Test3" finished-at="2023-06-06T18:29:31 IST" duration-ms="148838">
+      <class name="QA_AccountManager_TestCases.SRcompanydetials">
+        <test-method is-config="true" signature="beforetestmethod()[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4]" started-at="2023-06-06T18:27:02 IST" name="beforetestmethod" finished-at="2023-06-06T18:27:02 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetestmethod -->
+        <test-method is-config="true" signature="beforeMethodMethod(java.lang.String,java.lang.reflect.Method)[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4]" started-at="2023-06-06T18:27:02 IST" name="beforeMethodMethod" finished-at="2023-06-06T18:27:07 IST" duration-ms="4353" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void QA_AccountManager_TestCases.SRcompanydetials.verifycompanydetails() throws java.io.IOException,java.lang.InterruptedException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodMethod -->
+        <test-method signature="verifycompanydetails()[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4]" started-at="2023-06-06T18:27:07 IST" name="verifycompanydetails" finished-at="2023-06-06T18:29:31 IST" duration-ms="144081" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifycompanydetails -->
+        <test-method is-config="true" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4]" started-at="2023-06-06T18:29:31 IST" name="afterMethod" finished-at="2023-06-06T18:29:31 IST" duration-ms="317" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifycompanydetails status=SUCCESS method=SRcompanydetials.verifycompanydetails()[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:QA_AccountManager_TestCases.SRcompanydetials@3b0090a4]" started-at="2023-06-06T18:29:31 IST" name="afterTest" finished-at="2023-06-06T18:29:31 IST" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- QA_AccountManager_TestCases.SRcompanydetials -->
+    </test> <!-- Test3 -->
+  </suite> <!-- Suite -->
+</testng-results>

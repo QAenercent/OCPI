@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="Utils.SuiteListener"></listener>
+	</listeners> 
+	<test thread-count="5" name="LoginPage">
+	  <parameter name="browser" value="chrome"></parameter>
+	  <classes>
+		    <class name="QA_AccountManager_TestCases.LoginTest"></class> 
+	  </classes>
+	   </test>
+	   <test thread-count="5" name="UIForgotpassword">
+	  <parameter name="browser" value="chrome"></parameter>
+	  <classes>
+		    <class name="QA_AccountManager_TestCases.UIforgotpasswordpage"></class> 
+	  </classes>
+	   </test>
+	   <test thread-count="5" name="ForgotpasswordFunctional">
+	  <parameter name="browser" value="chrome"></parameter>
+	  <classes>
+		    <class name="QA_AccountManager_TestCases.Forgotpassword_functional"></class> 
+	  </classes>
+	   </test>
+	   	  <test thread-count="5" name="SelfRegistration">
+	  <parameter name="browser" value="chrome"></parameter>
+	  <classes>
+		    <class name="QA_AccountManager_TestCases.SRcompanydetials"></class> 
+	  </classes>
+	   </test> 
+</suite> 
