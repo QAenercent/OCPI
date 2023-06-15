@@ -8,7 +8,7 @@
 	   	  <test thread-count="5" name="SelfRegistration">
 	  <parameter name="browser" value="chrome"></parameter>
 	  <classes>
-		    <class name="QA_ACPartner_TestCases.UiDashboard"></class> 
+		    <class name="QA_AccountManager_TestCases.imagecomparission"></class> 
 	  </classes>
 	   </test> 
 </suite> 

@@ -8,10 +8,10 @@ import Base.BaseTest;
 import PageEvent.UIForgotpasswordpage;
 import Utils.ElementFetch;
 
-public class UIforgotpasswordpage extends BaseTest{
+public class UIforgotpasswordpage extends BaseTest {
 	ElementFetch ele = new ElementFetch();
 	UIForgotpasswordpage forgotpass = new UIForgotpasswordpage();
-	
+
 	@Test
 	public void verifyuiforgotpasswordpage() throws IOException, InterruptedException {
 		forgotpass.verifyheadline1();
@@ -20,9 +20,7 @@ public class UIforgotpasswordpage extends BaseTest{
 		forgotpass.verifyemailplaceholder();
 		forgotpass.verifyresetpassword();
 		forgotpass.verifybacktologin();
-		forgotpass.verifyfooter(); 
-		
-	}}
-	
+		forgotpass.verifyfooter();
 
-
+	}
+}

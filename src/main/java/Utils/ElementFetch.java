@@ -10,9 +10,9 @@ import Base.BaseTest;
 public class ElementFetch {
 
 	public WebElement getWebElement(String indentifierType, String identifiervalue) {
-		
-		switch(indentifierType) {
-		
+
+		switch (indentifierType) {
+
 		case "XPATH":
 			return BaseTest.driver.findElement(By.xpath(identifiervalue));
 		case "CSS":
@@ -25,17 +25,17 @@ public class ElementFetch {
 			return BaseTest.driver.findElement(By.className(identifiervalue));
 		case "TAGNAME":
 			return BaseTest.driver.findElement(By.tagName(identifiervalue));
-		
+
 		default:
 			return null;
-			
+
 		}
 	}
-	
-   public List<WebElement> getWebElements(String indentifierType, String identifiervalue) {
-		
-		switch(indentifierType) {
-		
+
+	public List<WebElement> getWebElements(String indentifierType, String identifiervalue) {
+
+		switch (indentifierType) {
+
 		case "XPATH":
 			return BaseTest.driver.findElements(By.xpath(identifiervalue));
 		case "CSS":
@@ -48,9 +48,10 @@ public class ElementFetch {
 			return BaseTest.driver.findElements(By.className(identifiervalue));
 		case "TAGNAME":
 			return BaseTest.driver.findElements(By.tagName(identifiervalue));
-		
+
 		default:
 			return null;
-			
-		}}
+
+		}
+	}
 }

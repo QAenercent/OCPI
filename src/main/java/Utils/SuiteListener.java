@@ -14,28 +14,25 @@ import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
 import Base.BaseTest;
 
-
 public class SuiteListener implements ITestListener, IAnnotationTransformer {
-	
-	public void OnTestFailuer(ITestResult result){
-		
-		
-		String filename = System.getProperty("user.dir") + File.separator + "screenshots"+File.separator+result.getMethod().getMethodName();
-		File f1 = ((TakesScreenshot)BaseTest.driver).getScreenshotAs(OutputType.FILE);
+
+	public void OnTestFailuer(ITestResult result) {
+
+		String filename = System.getProperty("user.dir") + File.separator + "screenshots" + File.separator
+				+ result.getMethod().getMethodName();
+		File f1 = ((TakesScreenshot) BaseTest.driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(f1, new File(filename+ ".png"));
-		}
-		catch (IOException e){
+			FileUtils.copyFile(f1, new File(filename + ".png"));
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public void transformer(
-			ITestAnnotation annotation, Class<?> testClass , Constructor<?> testConstructor, Method testMethod)
-	{
+
+	public void transformer(ITestAnnotation annotation, Class<?> testClass, Constructor<?> testConstructor,
+			Method testMethod) {
 		annotation.setRetryAnalyzer(RetryAnalyzer.class);
-		
+
 	}
 
 }

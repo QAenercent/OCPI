@@ -7,15 +7,15 @@
   <test thread-count="5" name="SelfRegistration(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="QA_ACPartner_TestCases.UiDashboard">
+      <class name="QA_AccountManager_TestCases.Imangecapture">
         <methods>
-          <include name="login"/>
+          <include name="test"/>
           <include name="beforetestmethod"/>
-          <include name="afterTest"/>
           <include name="beforeMethodMethod"/>
+          <include name="afterTest"/>
           <include name="afterMethod"/>
         </methods>
-      </class> <!-- QA_ACPartner_TestCases.UiDashboard -->
+      </class> <!-- QA_AccountManager_TestCases.Imangecapture -->
     </classes>
   </test> <!-- SelfRegistration(failed) -->
 </suite> <!-- Failed suite [Suite] -->

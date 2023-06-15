@@ -1,37 +1,36 @@
 package PageObjects;
 
 public interface SRCompanydetailsObject {
-	
-	//Primary contact name 
+
+	// Primary contact name
 	String registerhere = "//span[contains(text(),'Register Here')]";
 	String Primarycontactname = "//input[@class='input-field-wrap' and @name='name']";
-	String namefieldrequirederror = "//*[@name='name']//following-sibling::span"; 
+	String namefieldrequirederror = "//*[@name='name']//following-sibling::span";
 	String proceed = "//button[contains(text(),'Proceed')]";
 	String limiterror = "//*[contains(text(),'Primary contact')]";
-	
-	// Email 
+
+	// Email
 	String Invalidemail = "//span[contains(text(),'Invalid email address')]";
 	String emailfiledrequirederror = "//*[@name='email']//following-sibling::span";
 	String Email = "//input[@name='email']";
-	
-	//Verification code
+
+	// Verification code
 	String otp = "//*[@name='otp']";
 	String otpfiledrequirederror = "//*[@name='otp']//following-sibling::span";
-	
-	//Primary mobile number
+
+	// Primary mobile number
 	String mobilenumber = "//*[@name='mobile']";
-	String mobilenumberfiledrequirederror= "//*[@name='mobile']//following-sibling::span";
+	String mobilenumberfiledrequirederror = "//*[@name='mobile']//following-sibling::span";
 	String invalidmobilenumber = "//*[text()='Invalid phone number']";
-	
-	//Password fiels
+
+	// Password fiels
 	String password = "//*[@name='password']";
 	String passworderror = "//*[text()='Password must be have 6 characters']";
 	String passwordfieldrequirederror = "//*[@name='password']//following-sibling::span";
-	
-	//Confirm Password
+
+	// Confirm Password
 	String confirmpasswordrequirederror = "//*[@name='confirmPassword']//following-sibling::span";
 	String confirmpassword = "//*[@name='confirmPassword']";
 	String samepassword_error = "//*[text()='Password and confirm password should be same']";
-	
-	
+
 }

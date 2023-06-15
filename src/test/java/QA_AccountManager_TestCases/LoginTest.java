@@ -11,19 +11,19 @@ import PageEvent.LoginPage;
 import PageObjects.LoginPageObject;
 import Utils.ElementFetch;
 
-public class LoginTest extends BaseTest  {
+public class LoginTest extends BaseTest {
 
 	ElementFetch ele = new ElementFetch();
 	LoginPage login = new LoginPage();
 	PageEvent.UILoginpage UILoginpage = new PageEvent.UILoginpage();
-	
-	@Test (priority=1)
+
+	@Test(priority = 1)
 	public void loginpage() throws InterruptedException {
 		login.verifyifloginpageisloaded();
 		login.entercredentials();
 	}
-	
-	@Test (priority=2)
+
+	@Test(priority = 2)
 	public void UIloginpage() throws IOException, InterruptedException {
 		UILoginpage.UIvalidationofloginpage();
 		UILoginpage.verifytitle();
@@ -36,5 +36,5 @@ public class LoginTest extends BaseTest  {
 		UILoginpage.validatepasswordclickable();
 		UILoginpage.validateforgetpasswordlink();
 	}
-	
+
 }

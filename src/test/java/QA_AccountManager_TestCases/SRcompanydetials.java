@@ -8,11 +8,11 @@ import Base.BaseTest;
 import PageEvent.SRCompanydetailsFunctional;
 import Utils.ElementFetch;
 
-public class SRcompanydetials extends BaseTest{
-	
+public class SRcompanydetials extends BaseTest {
+
 	ElementFetch ele = new ElementFetch();
-	SRCompanydetailsFunctional sr = new SRCompanydetailsFunctional ();
-	
+	SRCompanydetailsFunctional sr = new SRCompanydetailsFunctional();
+
 	@Test
 	public void verifycompanydetails() throws IOException, InterruptedException {
 		sr.verificationofcompanydetails();
@@ -21,5 +21,5 @@ public class SRcompanydetials extends BaseTest{
 		sr.verifymobilenumber();
 		sr.verifypassword();
 		sr.verifyconfirmpassword();
-	}}
-
+	}
+}
