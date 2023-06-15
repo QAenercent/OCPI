@@ -24,7 +24,6 @@ public class ImageCapture extends BaseTest{
 		 }
 		 else {
 			 System.out.println("Image File Is Not Captured");
-		 }
-		 
-	}
-}
+		 } 
+	}}
+

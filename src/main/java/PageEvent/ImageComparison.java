@@ -15,10 +15,10 @@ import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
-public class ImageComparission extends BaseTest{
-  public void imagecomparission() throws IOException { 
+public class ImageComparison extends BaseTest{
+  public void imagecomparison() throws IOException { 
 	  
-	  //****************************Comparision of Actual & Expected Images**************************//
+	  //****************************Comparison of Actual & Expected Images**************************//
 	   BufferedImage expectedimage = ImageIO.read(new File("./images/logoimage.png"));
 	   WebElement logoimageelement = driver.findElement(By.xpath("//img[@alt='Truepowerlogo']"));
 	   Screenshot logoimageScreenshot  = new AShot().takeScreenshot(driver,logoimageelement);
