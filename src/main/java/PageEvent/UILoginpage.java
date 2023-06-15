@@ -305,10 +305,6 @@ public class UILoginpage extends BaseTest{
 				boolean isDisplayed = footer.isDisplayed();
 				if(isDisplayed == true) {
 					System.err.println("Fotter is visible");
-				}
-		}
-}
+		 }}}
 		
-			
-
-
+ 

@@ -4,18 +4,18 @@
   <listeners>
     <listener class-name="Utils.SuiteListener"/>
   </listeners>
-  <test thread-count="5" name="Test1(failed)">
+  <test thread-count="5" name="SelfRegistration(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="QA_AccountManager_TestCases.UIforgotpasswordpage">
+      <class name="QA_ACPartner_TestCases.UiDashboard">
         <methods>
+          <include name="login"/>
           <include name="beforetestmethod"/>
           <include name="afterTest"/>
           <include name="beforeMethodMethod"/>
-          <include name="verifyuiforgotpasswordpage"/>
           <include name="afterMethod"/>
         </methods>
-      </class> <!-- QA_AccountManager_TestCases.UIforgotpasswordpage -->
+      </class> <!-- QA_ACPartner_TestCases.UiDashboard -->
     </classes>
-  </test> <!-- Test1(failed) -->
+  </test> <!-- SelfRegistration(failed) -->
 </suite> <!-- Failed suite [Suite] -->

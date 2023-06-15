@@ -27,12 +27,13 @@ public class LoginPage extends BaseTest {
  
 	 public void entercredentials() throws InterruptedException {
 		 ele.getWebElement("XPATH", LoginPageObject.email).sendKeys("jay.kumar@enercent.co");
-		 ele.getWebElement("XPATH", LoginPageObject.password).sendKeys("rahul$3");
+		 ele.getWebElement("XPATH", LoginPageObject.password).sendKeys("Enercent$3");
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("window.scrollBy(0,1000)"); 
 		 WebDriverWait wait = new WebDriverWait (driver,Duration.ofSeconds(3));
 		 wait.until(ExpectedConditions.elementToBeClickable(ele.getWebElement("XPATH", LoginPageObject.loginbutton)));
 		 ele.getWebElement("XPATH", LoginPageObject.loginbutton).click();
+		 
 	 }
 }
 	
