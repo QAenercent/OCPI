@@ -36,5 +36,22 @@ public class LoginTest extends BaseTest {
 		UILoginpage.validatepasswordclickable();
 		UILoginpage.validateforgetpasswordlink();
 	}
+	@Test(priority = 3)
+	public void verifytoast_errors() throws IOException {
+		login.verifytoast_errors();
+	}
+	@Test(priority = 4)
+	public void verifyvalidcredentials() throws IOException {
+		login.verifyAllvalid_credentails();
+	}
+	@Test(priority = 5)
+	public void verifyInvalidpassword_error() throws IOException, InterruptedException {
+		login.verifyinvalidpassword_error();
+		
+	}
+	@Test(priority = 6)
+	public void verifyMinandMax_error() throws IOException{
+		login.verifyminandmaxLimit_error();
+	}
 
 }
