@@ -6,277 +6,217 @@ import java.time.Duration;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import Base.BaseTest;
-import PageObjects.ForgotPasswordObject;
-import PageObjects.SRCompanydetailsObject;
+import PageObjects.SRCompanyDetailsObject;
+import PageObjects.SRPersonaldetailsObject;
 import Utils.ElementFetch;
 
-public class SRCompanydetailsFunctional extends BaseTest {
-
-	String requiredfield = "This field is required";
-	String maxminklimit = "Primary contact name must be between 3 and 35 characters";
+public class SRCompanydetailsFunctional extends BaseTest{
+	
+	ElementFetch ele = new ElementFetch(); 
+	String required_error = "This field is required";
+	String namelimit_error = "Company name must be between 3 and 35 characters";
+	String phonenumberlimit_error = "Invalid phone number";
 	String invalidemail = "Invalid email address";
-	String invalidmobilenumber = "Invalid phone number";
-	String passwordlimit = "Password must be have 6 characters";
-	String samepassword = "Password and confirm password should be same";
+	String companyaddresslimit = "Company address must be between 3 and 50 characters and only / , . - are allowed";
+	String invalidpincode = "Invalid email address";
 
-	ElementFetch ele = new ElementFetch();
-
-	public void verificationofcompanydetails() throws IOException, InterruptedException {
+	public void enterpersonaldetails() throws InterruptedException {
 		// ******************** Scroll *****************//
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,1000)");
 		Thread.sleep(3000);
-
-		// ******************* Validation of Input Field ********************//
-		ele.getWebElement("XPATH", SRCompanydetailsObject.registerhere).click();
-
-		String filepath = "./TestData/forgotpass.xlsx";
-		FileInputStream inputstream = new FileInputStream(filepath);
-
-		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
-		XSSFSheet sheet = workbook.getSheet("Sheet1");
-
-		int rows = sheet.getLastRowNum();
-		int colmn = sheet.getRow(0).getLastCellNum();
-
-		for (int i = 1; i <= rows; i++) {
-			for (int j = 0; j <= colmn; j++) {
-
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Primarycontactname).clear();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Primarycontactname).click();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Primarycontactname)
-						.sendKeys(sheet.getRow(i).getCell(j++).toString());
-
-				JavascriptExecutor jss = (JavascriptExecutor) driver;
-				jss.executeScript("window.scrollBy(0,1000)");
-				Thread.sleep(2000);
-				ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
-				WebElement text = ele.getWebElement("XPATH", SRCompanydetailsObject.namefieldrequirederror);
-
-				Thread.sleep(3);
-				try {
-					String required = ele.getWebElement("XPATH", SRCompanydetailsObject.namefieldrequirederror)
-							.getText();
-
-					if (required.equals(requiredfield)) {
-						Assert.assertEquals(required, requiredfield);
-						System.out.println(required);
-					} else {
-						Thread.sleep(5);
-						String limit_err = ele.getWebElement("XPATH", SRCompanydetailsObject.limiterror).getText();
-						Assert.assertEquals(limit_err, maxminklimit);
-						System.out.println(limit_err);
-					}
-				}
-
-				catch (TimeoutException e) {
-					getScreenshot("SR-Primarycontactname", driver);
-					System.err.println("SR-Primarycontactname test case failed");
-				}
-				Thread.sleep(2000);
-			}
-		}
+		
+		//********************Enter All details of personal details page********************************//
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.registerhere).click();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.Primarycontactname))).isDisplayed();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Primarycontactname).sendKeys("suraj");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Email).sendKeys("alert@enercent.co");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.generatecodelink).click();
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmationcode)));
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.otp).sendKeys("121212");
+		js.executeScript("window.scrollBy(0,250)");
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmpassword)));
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.mobilenumber).sendKeys("1212121212");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.password).sendKeys("aaaaaaaa");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmpassword).sendKeys("aaaaaaaa");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.proceed).click();
 	}
-
-	// ******************* Validation of Emailid Field ********************//
-	public void verifyemail() throws IOException, InterruptedException {
+	
+	//****************************Company Details Page -Verify all type of errors****************************//
+	
+	//**************************Validation of Company Name********************************//
+	public void verifycomapnynamefield() throws IOException {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRCompanyDetailsObject.companyname)));
+		
 		String filepath = "./TestData/SR_Functional.xlsx";
 		FileInputStream inputstream = new FileInputStream(filepath);
 
 		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
-		XSSFSheet sheet = workbook.getSheet("Email");
+		XSSFSheet sheet = workbook.getSheet("CompanyName");
 
 		int rows = sheet.getLastRowNum();
 		int colmn = sheet.getRow(0).getLastCellNum();
 
 		for (int i = 1; i <= rows; i++) {
 			for (int j = 0; j <= colmn; j++) {
-
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Email).clear();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Email).click();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.Email)
-						.sendKeys(sheet.getRow(i).getCell(j++).toString());
-
-				JavascriptExecutor jss = (JavascriptExecutor) driver;
-				jss.executeScript("window.scrollBy(0,1000)");
-				Thread.sleep(2000);
-				ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
-				WebElement text = ele.getWebElement("XPATH", SRCompanydetailsObject.emailfiledrequirederror);
-				Thread.sleep(3);
-				try {
-					String required = ele.getWebElement("XPATH", SRCompanydetailsObject.emailfiledrequirederror)
-							.getText();
-
-					if (required.equals(requiredfield)) {
-						Assert.assertEquals(required, requiredfield);
-						System.out.println(required);
-					} else {
-						Thread.sleep(5);
-						String invalidemail_err = ele.getWebElement("XPATH", SRCompanydetailsObject.Invalidemail)
-								.getText();
-						Assert.assertEquals(invalidemail_err, invalidemail);
-						System.out.println(invalidemail_err);
-					}
-				} catch (TimeoutException e) {
-					getScreenshot("SR-Emailid", driver);
-					System.err.println("SR-Emailid test case failed");
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyname).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyname).sendKeys(sheet.getRow(i).getCell(j++).toString());
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click(); 
+			try { 
+				String required = ele.getWebElement("XPATH", SRCompanyDetailsObject.companynamedrequired_error).getText();
+				if (required.equals(required_error)) {
+					Assert.assertEquals(required, required_error);
+					System.out.println(required);
+				} 
+				else { 
+				String namelimiterror = ele.getWebElement("XPATH", SRCompanyDetailsObject.companynamelimit_error).getText();
+					Assert.assertEquals(namelimiterror, namelimit_error);
+					System.out.println(namelimiterror);
 				}
-				Thread.sleep(2000);
+			} catch (TimeoutException e) {
+				getScreenshot("Company Name Field Error", driver);
+				System.err.println("Company Name Field Error test case failed");
 			}
-		}
-	}
+			}}}
+		//**************************Validation of Company Phone Number********************************//
+	 public void companyphonenumber() throws IOException {
+		 String filepath = "./TestData/SR_Functional.xlsx";
+		 FileInputStream inputstream = new FileInputStream(filepath);
 
-	// ******************* Validation of Verification Code ********************//
-	public void verifyverificationcode() throws IOException, InterruptedException {
-		Thread.sleep(3000);
-		ele.getWebElement("XPATH", SRCompanydetailsObject.otp).click();
-		ele.getWebElement("XPATH", SRCompanydetailsObject.otp).sendKeys("");
-		ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
+		 XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		 XSSFSheet sheet = workbook.getSheet("CompanyPhoneNo");
 
-		String requiredfield = ele.getWebElement("XPATH", SRCompanydetailsObject.otpfiledrequirederror).getText();
-		if (requiredfield.equals(requiredfield)) {
-			Assert.assertTrue(true);
-		} else {
-			getScreenshot("SR-Verificationcode", driver);
-			System.err.println("SR-Verificationcode test case failed");
-		}
-	}
+		 int rows = sheet.getLastRowNum();
+		 int colmn = sheet.getRow(0).getLastCellNum();
 
-	// ******************* Validation of Mobile Number ********************//
-	public void verifymobilenumber() throws IOException, InterruptedException {
+		 for (int i = 1; i <= rows; i++) {
+			 for (int j = 0; j <= colmn; j++) {
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.companyphonenumber).clear();
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.companyphonenumber).sendKeys(sheet.getRow(i).getCell(j++).toString());
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click(); 
+				try { 
+				String required = ele.getWebElement("XPATH", SRCompanyDetailsObject.phonenumberrequired_error).getText();
+				if (required.equals(required_error)) {
+					Assert.assertEquals(required, required_error);
+					System.out.println(required);
+					} 
+				else { 
+					String numberlimiterror = ele.getWebElement("XPATH", SRCompanyDetailsObject.phonenumberlimit_error).getText();
+						Assert.assertEquals(numberlimiterror, phonenumberlimit_error);
+						System.out.println(numberlimiterror);
+					}}		
+				 catch (TimeoutException e) {
+					getScreenshot("Company phone number Field Error", driver);
+					System.err.println("Company phone numbers test case failed");
+			}}}}
+					 		
+	//**************************Validation of Company Email Address********************************//
+	public void verifycompanyemailid() throws IOException {
+		
+		 String filepath = "./TestData/SR_Functional.xlsx";
+		 FileInputStream inputstream = new FileInputStream(filepath);
+
+		 XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		 XSSFSheet sheet = workbook.getSheet("CompanyEmail");
+
+		 int rows = sheet.getLastRowNum();
+		 int colmn = sheet.getRow(0).getLastCellNum();
+
+		 for (int i = 1; i <= rows; i++) {
+			 for (int j = 0; j <= colmn; j++) {
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.email).clear();
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.email).sendKeys(sheet.getRow(i).getCell(j++).toString());
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click(); 
+				try { 
+				String required = ele.getWebElement("XPATH", SRCompanyDetailsObject.emailrequired_error).getText();
+				if (required.equals(required_error)) {
+					Assert.assertEquals(required, required_error);
+					System.out.println(required);
+					} 
+				else { 
+					String emailerror = ele.getWebElement("XPATH", SRCompanyDetailsObject.invalidemail_error).getText();
+						Assert.assertEquals(emailerror, invalidemail);
+						System.out.println(emailerror);
+					}}		
+				 catch (TimeoutException e) {
+					getScreenshot("Company email address Error", driver);
+					System.err.println("Company email address test case failed");
+			}}}}
+	
+	//**************************Validation of Company Address********************************//
+	public void verifycompanyaddress() throws IOException {
+
 		String filepath = "./TestData/SR_Functional.xlsx";
-		FileInputStream inputstream = new FileInputStream(filepath);
+		 FileInputStream inputstream = new FileInputStream(filepath);
 
-		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
-		XSSFSheet sheet = workbook.getSheet("Mobilenumber");
+		 XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		 XSSFSheet sheet = workbook.getSheet("CompanyAddress");
 
-		int rows = sheet.getLastRowNum();
-		int colmn = sheet.getRow(0).getLastCellNum();
+		 int rows = sheet.getLastRowNum();
+		 int colmn = sheet.getRow(0).getLastCellNum();
 
-		for (int i = 1; i <= rows; i++) {
-			for (int j = 0; j <= colmn; j++) {
-				ele.getWebElement("XPATH", SRCompanydetailsObject.mobilenumber).clear();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.mobilenumber).click();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.mobilenumber)
-						.sendKeys(sheet.getRow(i).getCell(j++).toString());
-				Thread.sleep(2000);
-				ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
-				WebElement text = ele.getWebElement("XPATH", SRCompanydetailsObject.mobilenumberfiledrequirederror);
+		 for (int i = 1; i <= rows; i++) {
+			 for (int j = 0; j <= colmn; j++) {
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.companyaddress).clear();
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.companyaddress).sendKeys(sheet.getRow(i).getCell(j++).toString());
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click(); 
+				try { 
+				String required = ele.getWebElement("XPATH", SRCompanyDetailsObject.addressrequired_error).getText();
+				if (required.equals(required_error)) {
+					Assert.assertEquals(required, required_error);
+					System.out.println(required);
+					} 
+				else { 
+					String companyaddress_error = ele.getWebElement("XPATH", SRCompanyDetailsObject.companyaddresslimit_error).getText();
+						Assert.assertEquals(companyaddress_error, companyaddresslimit);
+						System.out.println(companyaddress_error);
+					}}		
+				 catch (TimeoutException e) {
+					getScreenshot("Company address Error", driver);
+					System.err.println("Company address test case failed");
+		}}}}
+	//**************************Validation of Pincode********************************//
+	public void verifypincode() throws IOException, InterruptedException {
 
-				try {
-					String required = ele.getWebElement("XPATH", SRCompanydetailsObject.mobilenumberfiledrequirederror)
-							.getText();
-
-					if (required.equals(requiredfield)) {
-						Assert.assertEquals(required, requiredfield);
-						System.out.println(required);
-					} else {
-						Thread.sleep(2000);
-						String invalidmobile_err = ele
-								.getWebElement("XPATH", SRCompanydetailsObject.invalidmobilenumber).getText();
-						Assert.assertEquals(invalidmobile_err, invalidmobilenumber);
-						System.out.println(invalidmobile_err);
-					}
-				} catch (TimeoutException e) {
-					getScreenshot("SR-Primary Mobile Number", driver);
-					System.err.println("SR-Primary Mobile Number test case failed");
-				}
-				Thread.sleep(2000);
-			}
-		}
-	}
-
-	// ******************* Validation of Password ********************//
-	public void verifypassword() throws IOException, InterruptedException {
 		String filepath = "./TestData/SR_Functional.xlsx";
-		FileInputStream inputstream = new FileInputStream(filepath);
+		 FileInputStream inputstream = new FileInputStream(filepath);
 
-		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
-		XSSFSheet sheet = workbook.getSheet("password");
+		 XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		 XSSFSheet sheet = workbook.getSheet("Pincode");
 
-		int rows = sheet.getLastRowNum();
-		int colmn = sheet.getRow(0).getLastCellNum();
+		 int rows = sheet.getLastRowNum();
+		 int colmn = sheet.getRow(0).getLastCellNum();
 
-		for (int i = 1; i <= rows; i++) {
-			for (int j = 0; j <= colmn; j++) {
-				ele.getWebElement("XPATH", SRCompanydetailsObject.password).clear();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.password).click();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.password)
-						.sendKeys(sheet.getRow(i).getCell(j++).toString());
-				Thread.sleep(2000);
-				ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
-				WebElement text = ele.getWebElement("XPATH", SRCompanydetailsObject.passwordfieldrequirederror);
-
-				try {
-					String required = ele.getWebElement("XPATH", SRCompanydetailsObject.passwordfieldrequirederror)
-							.getText();
-
-					if (required.equals(requiredfield)) {
-						Assert.assertEquals(required, requiredfield);
-						System.out.println(required);
-					} else {
-						String Passwordlimit = ele.getWebElement("XPATH", SRCompanydetailsObject.passworderror)
-								.getText();
-						Assert.assertEquals(Passwordlimit, passwordlimit);
-						System.out.println(Passwordlimit);
-					}
-				} catch (TimeoutException e) {
-					getScreenshot("SR-Password", driver);
-					System.err.println("SR-Password test case failed");
-				}
-				Thread.sleep(2000);
-			}
-		}
-	}
-
-	// ******************* Validation of Confirm Password ********************//
-	public void verifyconfirmpassword() throws IOException, InterruptedException {
-		String filepath = "./TestData/SR_Functional.xlsx";
-		FileInputStream inputstream = new FileInputStream(filepath);
-
-		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
-		XSSFSheet sheet = workbook.getSheet("Confirmpassword");
-
-		int rows = sheet.getLastRowNum();
-		int colmn = sheet.getRow(0).getLastCellNum();
-
-		for (int i = 1; i <= rows; i++) {
-			for (int j = 0; j <= colmn; j++) {
-				ele.getWebElement("XPATH", SRCompanydetailsObject.confirmpassword).clear();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.confirmpassword).click();
-				ele.getWebElement("XPATH", SRCompanydetailsObject.confirmpassword)
-						.sendKeys(sheet.getRow(i).getCell(j++).toString());
-				Thread.sleep(2000);
-				ele.getWebElement("XPATH", SRCompanydetailsObject.proceed).click();
-				WebElement text = ele.getWebElement("XPATH", SRCompanydetailsObject.confirmpasswordrequirederror);
-
-				try {
-					String required = ele.getWebElement("XPATH", SRCompanydetailsObject.confirmpasswordrequirederror)
-							.getText();
-
-					if (required.equals(requiredfield)) {
-						Assert.assertEquals(required, requiredfield);
-						System.out.println(required);
-					} else {
-						String Samepassword = ele.getWebElement("XPATH", SRCompanydetailsObject.samepassword_error)
-								.getText();
-						Assert.assertEquals(Samepassword, samepassword);
-						System.out.println(Samepassword);
-					}
-				} catch (TimeoutException e) {
-					getScreenshot("SR-Confirm Password", driver);
-					System.err.println("SR-Confirm Password test case failed");
-				}
-				Thread.sleep(2000);
-			}
-		}
-	}
+		 for (int i = 1; i <= rows; i++) {
+			 for (int j = 0; j <= colmn; j++) {
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.pincode).clear();
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.pincode).sendKeys(sheet.getRow(i).getCell(j++).toString());
+				ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click(); 
+				try { 
+				String required = ele.getWebElement("XPATH", SRCompanyDetailsObject.pincoderequired_error).getText();
+				if (required.equals(required_error)) {
+					Assert.assertEquals(required, required_error);
+					System.out.println(required);
+					} 
+				else { 
+					String pincodeerror = ele.getWebElement("XPATH", SRCompanyDetailsObject.invalidpincode).getText();
+						Assert.assertEquals(pincodeerror, invalidpincode);
+						System.out.println(pincodeerror);
+					}}		
+				 catch (TimeoutException e) {
+					getScreenshot("Company Pincode Error", driver);
+					System.err.println("Company Pincode test case failed");
+		}}}
+		 ele.getWebElement("XPATH", SRCompanyDetailsObject.statedropdown).click();
+		 ele.getWebElement("XPATH", SRCompanyDetailsObject.citydropdown).click();
+		 Thread.sleep(2000);		 }
 }
