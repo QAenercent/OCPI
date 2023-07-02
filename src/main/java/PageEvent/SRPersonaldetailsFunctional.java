@@ -10,11 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import Base.BaseTest;
 import PageObjects.ForgotPasswordObject;
+import PageObjects.SRCompanyDetailsObject;
 import PageObjects.SRPersonaldetailsObject;
 import Utils.ElementFetch;
 
@@ -276,7 +278,83 @@ public class SRPersonaldetailsFunctional extends BaseTest {
 					System.err.println("SR-Confirm Password test case failed");
 				}
 				Thread.sleep(2000);
+			}}}
+	
+	//************************Personal Details -Verify All type of pop-up******************************************//
+	public void verifyalltypeofpopup() throws IOException, InterruptedException {
+		// ******************** Scroll *****************//
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,1000)");
+		Thread.sleep(3000);  
+
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.registerhere).click();			
+		String filepath = "./TestData/SR_Functional.xlsx";
+		FileInputStream inputstream = new FileInputStream(filepath);
+
+		XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		XSSFSheet sheet = workbook.getSheet("PersonalDetailPopupError");
+
+		int rows = sheet.getLastRowNum();
+		int colmn = sheet.getRow(0).getLastCellNum();
+
+		for (int i = 1; i <= rows; i++) {
+			for (int j = 0; j <= colmn; j++) {
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Primarycontactname).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Primarycontactname).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Email).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Email).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.generatecodelink).click();
+		
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmationcode)));
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.otp).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.otp).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		js.executeScript("window.scrollBy(0,250)");
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.proceed)));
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.mobilenumber).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.mobilenumber).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.password).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.password).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmpassword).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmpassword).sendKeys(sheet.getRow(i).getCell(j++).toString());
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.confirmpassword).click();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.proceed).click();
+		
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.okbutton)));
+		if(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).isDisplayed()) {
+			String popup = ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).getText();
+			
+			//******************************Invalid verification code Pop-up*******************************************//
+			if(popup.equals("Invalid verification code")){ 
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).getText());
 			}
+			//*******************************Phone number Already Registered Pop-up****************************************//
+			else if(popup.equals("Mobile number of user has already been taken")) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).getText()); 
+			}}
+			else {
+				getScreenshot("Personal Details Page Pop-up mesages", driver);
+				System.err.println("Personal Details Page Pop-up test case failed");
+			}
+			ele.getWebElement("XPATH", SRPersonaldetailsObject.okbutton).click();
+			wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.proceed)));
+		}}}
+	//*************************Verify Email Registered Pop-up*****************************//
+	public void verifyregisteredemailpopup() throws IOException, InterruptedException {
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Email).clear();
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.Email).sendKeys("suraj.k@antino.io");
+		ele.getWebElement("XPATH", SRPersonaldetailsObject.generatecodelink).click();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRPersonaldetailsObject.okbutton)));
+		if(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).isDisplayed()) {
+			Assert.assertEquals(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).getText(), "User exists already");
+			System.out.println(ele.getWebElement("XPATH", SRPersonaldetailsObject.popup).getText());
 		}
-	}
+		else {
+			getScreenshot("User exists already Pop-up mesages", driver);
+			System.err.println("User exists already Pop-up test case failed");
+		}} 
+	
 }

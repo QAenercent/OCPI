@@ -7,15 +7,15 @@
   <test thread-count="5" name="SelfRegistration(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="QA_AccountManager_TestCases.Imangecapture">
+      <class name="QA_AccountManager_TestCases.SRbankingdetails_functional">
         <methods>
-          <include name="test"/>
           <include name="beforetestmethod"/>
           <include name="beforeMethodMethod"/>
           <include name="afterTest"/>
+          <include name="Verifyalltypeofbankingdetails_error"/>
           <include name="afterMethod"/>
         </methods>
-      </class> <!-- QA_AccountManager_TestCases.Imangecapture -->
+      </class> <!-- QA_AccountManager_TestCases.SRbankingdetails_functional -->
     </classes>
   </test> <!-- SelfRegistration(failed) -->
 </suite> <!-- Failed suite [Suite] -->

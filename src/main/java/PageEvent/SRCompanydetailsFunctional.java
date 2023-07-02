@@ -7,6 +7,7 @@ import java.time.Duration;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,6 +27,16 @@ public class SRCompanydetailsFunctional extends BaseTest{
 	String invalidemail = "Invalid email address";
 	String companyaddresslimit = "Company address must be between 3 and 50 characters and only / , . - are allowed";
 	String invalidpincode = "Invalid email address";
+	String companynamepopup = "Name of company has already been taken";
+	String phonenumberpopup = "Phone number of company has already been taken";
+	String emailpopup = "Email of company has already been taken";
+	String namephonenumberpopup = "Name of company has already been taken,Phone number of company has already been taken";
+	String invalidpincodepopup = "Address base Pincode is not matched with the entered city and state";
+	String alltypeofpopup = "Name of company has already been taken,Email of company has already been taken,"
+			+ "Phone number of company has already been taken,Address base Pincode is not matched with the entered city and state";
+	String emailandphonepopup = "Email of company has already been taken,Phone number of company has already been taken";
+	String name_emailandpincodepopup = "Name of company has already been taken,Email of company has already been "
+			+ "taken,Address base Pincode is not matched with the entered city and state";
 
 	public void enterpersonaldetails() throws InterruptedException {
 		// ******************** Scroll *****************//
@@ -215,8 +226,94 @@ public class SRCompanydetailsFunctional extends BaseTest{
 				 catch (TimeoutException e) {
 					getScreenshot("Company Pincode Error", driver);
 					System.err.println("Company Pincode test case failed");
-		}}}
-		 ele.getWebElement("XPATH", SRCompanyDetailsObject.statedropdown).click();
-		 ele.getWebElement("XPATH", SRCompanyDetailsObject.citydropdown).click();
-		 Thread.sleep(2000);		 }
-}
+		}}}}
+	
+	//***************************Verify CompanyDetails Pop-ups *************************************//
+	public void verifyalltypeofpopups() throws IOException,InterruptedException {
+		 String filepath = "./TestData/SR_Functional.xlsx";
+		 FileInputStream inputstream = new FileInputStream(filepath);
+
+		 XSSFWorkbook workbook = new XSSFWorkbook(inputstream);
+		 XSSFSheet sheet = workbook.getSheet("CompanyDetailPopupError");
+
+		 int rows = sheet.getLastRowNum();
+		 int colmn = sheet.getRow(0).getLastCellNum();
+
+		 for (int i = 1; i <= rows; i++) {
+			 for (int j = 0; j <= colmn; j++) {
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyname).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyname).sendKeys(sheet.getRow(i).getCell(j++).toString()); 
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyphonenumber).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyphonenumber).sendKeys(sheet.getRow(i).getCell(j++).toString()); 
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.email).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.email).sendKeys(sheet.getRow(i).getCell(j++).toString()); 
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyaddress).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.companyaddress).sendKeys(sheet.getRow(i).getCell(j++).toString());
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.statedropdown).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.statedropdown).sendKeys(sheet.getRow(i).getCell(j++).toString());
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.statedropdown).sendKeys(Keys.ENTER);
+			Thread.sleep(1000);
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.citydropdown).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.citydropdown).sendKeys(sheet.getRow(i).getCell(j++).toString());
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.citydropdown).sendKeys(Keys.ENTER);
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.pincode).clear();
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.pincode).sendKeys(sheet.getRow(i).getCell(j++).toString());
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed).click();
+			
+			WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+			wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRCompanyDetailsObject.okbutton))); 
+			
+			if(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).isDisplayed()) {
+			String popup = ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText();
+				
+			//******************************Company Name Already Registered Pop-up*******************************************//
+			if(popup.equals(companynamepopup)){ 
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText());
+			}
+			//*******************************Phone number Already Registered Pop-up****************************************//
+			else if(popup.equals(phonenumberpopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText()); 
+			}
+			//*******************************Email Already Registered Pop-up****************************************//
+			else if(popup.equals(emailpopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText());  
+			}
+			//*******************************Invalid Pincode Pop-up****************************************//
+			else if(popup.equals(invalidpincodepopup)) { 
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText());  
+			}
+			//*******************************Name & Phone No Already Registered Pop-up****************************************//
+			else if(popup.equals(namephonenumberpopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText()); 
+			}
+			//*******************************Email & phone Already Registered Pop-up****************************************//
+			else if(popup.equals(emailandphonepopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText()); 
+			}
+			//*******************************Name,Email Already Registered & Invalid pin-code Pop-up****************************************//
+			else if(popup.equals(name_emailandpincodepopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText()); 
+			}
+			//*******************************ALL Type of Pop-up****************************************//
+			else if(popup.equals(alltypeofpopup)) {
+				Assert.assertTrue(true);
+				System.out.println(ele.getWebElement("XPATH", SRCompanyDetailsObject.popup).getText()); 
+			}}
+			else {
+				getScreenshot("Pop-up mesages", driver);
+				System.err.println("Pop-up test case failed");
+			}
+			ele.getWebElement("XPATH", SRCompanyDetailsObject.okbutton).click();
+			wait.until(ExpectedConditions.visibilityOf(ele.getWebElement("XPATH", SRCompanyDetailsObject.proceed)));
+			}}}
+			 
+	}
+	
+

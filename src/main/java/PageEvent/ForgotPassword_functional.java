@@ -101,7 +101,7 @@ public class ForgotPassword_functional extends BaseTest {
 
 						getScreenshot("Validate_Toast_ForgotPassword", driver);
 						System.err.println("Toast test case failed");
-						;
+						
 					}
 
 					driver.navigate().refresh();

@@ -1,6 +1,6 @@
 package PageObjects;
 
-public interface SRCompanydetailsObject {
+public interface SRPersonaldetailsObject {
 
 	// Primary contact name
 	String registerhere = "//span[contains(text(),'Register Here')]";
@@ -13,6 +13,8 @@ public interface SRCompanydetailsObject {
 	String Invalidemail = "//span[contains(text(),'Invalid email address')]";
 	String emailfiledrequirederror = "//*[@name='email']//following-sibling::span";
 	String Email = "//input[@name='email']";
+	String generatecodelink = "//*[text()='Generate code to verify']";
+	String confirmationcode = "//*[contains(text(),'Confirmation code ')]";
 
 	// Verification code
 	String otp = "//*[@name='otp']";
@@ -32,5 +34,9 @@ public interface SRCompanydetailsObject {
 	String confirmpasswordrequirederror = "//*[@name='confirmPassword']//following-sibling::span";
 	String confirmpassword = "//*[@name='confirmPassword']";
 	String samepassword_error = "//*[text()='Password and confirm password should be same']";
+	
+	//popup
+	String popup = "//*[@style='text-align: center;']";
+	String okbutton = "//*[text()='Ok']";
 
 }

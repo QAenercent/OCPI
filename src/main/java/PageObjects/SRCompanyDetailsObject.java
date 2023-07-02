@@ -25,13 +25,20 @@ public interface SRCompanyDetailsObject {
 	
 	//State
 	String staterequired_error = "(//*[text()='This field is required'])[5]";
-	String statedropdown = "(//*[@class='select-picker__indicators css-1wy0on6'])[1]";
+	String statedropdown = "(//*[@class='select-picker__input'])[1]"; 
 	
 	//City
 	String cityrequired_error = "(//*[text()='This field is required'])[5]";
-	String citydropdown = "(//*[@class='select-picker__indicators css-1wy0on6'])[2]";
+	String citydropdown = "(//*[@class='select-picker__input'])[2]";
+	
 	//Pincode
 	String invalidpincode = "//*[text()='Invalid pincode']";
 	String pincode = "//*[@name='pincode']";
 	String pincoderequired_error = "(//*[text()='This field is required'])[5]";
+	String okbutton = "//*[text()='Ok']";
+	
+	// Pop-Up
+	String popup = "//*[@style='text-align: center;']";
+	 
+
 }

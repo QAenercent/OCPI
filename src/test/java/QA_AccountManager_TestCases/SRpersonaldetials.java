@@ -5,13 +5,13 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import Base.BaseTest;
-import PageEvent.SRCompanydetailsFunctional;
+import PageEvent.SRPersonaldetailsFunctional;
 import Utils.ElementFetch;
 
-public class SRcompanydetials extends BaseTest {
+public class SRpersonaldetials extends BaseTest {
 
 	ElementFetch ele = new ElementFetch();
-	SRCompanydetailsFunctional sr = new SRCompanydetailsFunctional();
+	SRPersonaldetailsFunctional sr = new SRPersonaldetailsFunctional();
 
 	@Test
 	public void verifycompanydetails() throws IOException, InterruptedException {
@@ -21,5 +21,7 @@ public class SRcompanydetials extends BaseTest {
 		sr.verifymobilenumber();
 		sr.verifypassword();
 		sr.verifyconfirmpassword();
+		sr.verifyalltypeofpopup();
+		sr.verifyregisteredemailpopup();
 	}
 }

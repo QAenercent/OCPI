@@ -11,7 +11,7 @@ public class SRcompanydetails_functional extends BaseTest {
 
 	SRCompanydetailsFunctional sr = new SRCompanydetailsFunctional();
 	
-	@Test
+	@Test (priority=1) 
 	public void VerifyalltypeofCompanydetail_errors() throws InterruptedException, IOException {
 		sr.enterpersonaldetails();
 		sr.verifycomapnynamefield();
@@ -19,5 +19,11 @@ public class SRcompanydetails_functional extends BaseTest {
 		sr.verifycompanyaddress();
 		sr.companyphonenumber();
 		sr.verifypincode();
+	}
+	
+	@Test(priority=2)
+	public void verifyalltypeofpopups() throws InterruptedException, IOException {
+		sr.enterpersonaldetails();
+		sr.verifyalltypeofpopups();
 	}
 }
